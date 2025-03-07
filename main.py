@@ -68,9 +68,9 @@ with col1:
                 </div>
                 <div style="margin-top: 10px;">
                     <a href="{whatsapp_link}" target="_blank" style="text-decoration: none;">
-                        <button style="background-color: #25D366; color: white; border: none; padding: 5px 10px; border-radius: 5px; cursor: pointer;">
-                            Share on WhatsApp 💬
-                        </button>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="#25D366">
+                            <path d="M12 0C5.373 0 0 5.373 0 12c0 2.625.846 5.059 2.284 7.034L.153 23.486l4.452-2.131A11.94 11.94 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm-1.5 18h-3v-3h3v3zm0-4.5h-3v-9h3v9z"/>
+                        </svg>
                     </a>
                 </div>
             </div>
