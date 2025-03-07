@@ -1,31 +1,109 @@
-.holiday-card {
-    padding: 1.5rem;
-    border-radius: 0.5rem;
-    background-color: white;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    margin-bottom: 1rem;
+/* Main containers */
+.main-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 1rem;
 }
 
+/* Holiday card styling */
+.holiday-card {
+    padding: 1.5rem;
+    border-radius: 0.75rem;
+    background-color: var(--secondary-background-color);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    margin-bottom: 1.5rem;
+    transition: transform 0.2s ease-in-out;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.holiday-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+}
+
+/* Calendar styling */
 .calendar-view {
-    border-radius: 0.5rem;
-    padding: 1rem;
-    background-color: white;
+    border-radius: 0.75rem;
+    padding: 1.5rem;
+    background-color: var(--secondary-background-color);
     margin-top: 2rem;
+    border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .highlight-text {
-    color: #FF4B4B;
+    color: var(--primary-color);
     font-weight: bold;
 }
 
 .card-title {
     font-size: 1.25rem;
     font-weight: bold;
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.75rem;
+    color: var(--text-color);
 }
 
 .info-text {
     font-size: 1rem;
-    color: #666;
-    margin-bottom: 0.25rem;
+    color: rgba(255, 255, 255, 0.8);
+    margin-bottom: 0.5rem;
+}
+
+/* Statistics dashboard */
+.stats-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+    margin: 1rem 0;
+}
+
+.stat-card {
+    background-color: var(--secondary-background-color);
+    padding: 1rem;
+    border-radius: 0.5rem;
+    text-align: center;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.stat-value {
+    font-size: 2rem;
+    font-weight: bold;
+    color: var(--primary-color);
+}
+
+.stat-label {
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 0.9rem;
+}
+
+/* Calendar highlighting */
+.holiday-date {
+    background-color: rgba(37, 211, 102, 0.2) !important;
+    border-radius: 4px;
+}
+
+.weekend-date {
+    background-color: rgba(255, 255, 255, 0.1) !important;
+}
+
+/* WhatsApp icon */
+.whatsapp-icon {
+    transition: transform 0.2s ease;
+}
+
+.whatsapp-icon:hover {
+    transform: scale(1.1);
+}
+
+/* Favorite button */
+.favorite-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #FFD700;
+    font-size: 1.5rem;
+    transition: transform 0.2s ease;
+}
+
+.favorite-btn:hover {
+    transform: scale(1.1);
 }

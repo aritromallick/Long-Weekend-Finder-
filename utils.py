@@ -16,6 +16,33 @@ def get_years():
 def is_weekend(date):
     return date.weekday() >= 5
 
+def get_holidays_for_month(country, year, month):
+    holidays = load_holidays()
+    country_holidays = holidays[country][str(year)]
+
+    holiday_dates = set()
+    for holiday in country_holidays:
+        holiday_date = datetime.strptime(holiday['date'], '%Y-%m-%d')
+        if holiday_date.month == month:
+            holiday_dates.add(holiday['date'])
+
+    return holiday_dates
+
+def get_year_statistics(country, year):
+    holidays = load_holidays()
+    country_holidays = holidays[country][str(year)]
+    potentials = get_long_weekend_potentials(country, year)
+
+    total_leaves = sum(len(p['leaves_needed']) for p in potentials)
+    max_days_off = max((p['total_days'] for p in potentials), default=0)
+
+    return {
+        'total_holidays': len(country_holidays),
+        'long_weekends': len(potentials),
+        'total_leaves': total_leaves,
+        'max_days_off': max_days_off
+    }
+
 def get_long_weekend_potentials(country, year):
     holidays = load_holidays()
     country_holidays = holidays[country][str(year)]
