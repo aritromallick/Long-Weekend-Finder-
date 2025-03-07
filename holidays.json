@@ -1,0 +1,15 @@
+{
+    "India": {
+        "2025": [
+            {"date": "2025-01-01", "name": "New Year's Day", "day": "Wednesday"},
+            {"date": "2025-01-26", "name": "Republic Day", "day": "Sunday"},
+            {"date": "2025-03-25", "name": "Holi", "day": "Tuesday"},
+            {"date": "2025-04-14", "name": "Dr. Ambedkar Jayanti", "day": "Monday"},
+            {"date": "2025-08-15", "name": "Independence Day", "day": "Friday"},
+            {"date": "2025-10-02", "name": "Gandhi Jayanti", "day": "Thursday"},
+            {"date": "2025-10-23", "name": "Dussehra", "day": "Thursday"},
+            {"date": "2025-11-12", "name": "Diwali", "day": "Wednesday"},
+            {"date": "2025-12-25", "name": "Christmas", "day": "Thursday"}
+        ]
+    }
+}
