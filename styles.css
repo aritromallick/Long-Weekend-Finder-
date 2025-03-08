@@ -128,3 +128,31 @@
 .favorite-btn:hover {
     transform: scale(1.1);
 }
+
+/* WhatsApp button */
+.whatsapp-btn {
+    text-decoration: none;
+    display: inline-block;
+}
+
+.whatsapp-icon {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    background-color: rgba(37, 211, 102, 0.1);
+    border-radius: 0.5rem;
+    color: #25D366;
+    font-size: 0.9rem;
+    transition: all 0.2s ease;
+}
+
+.whatsapp-icon:hover {
+    transform: scale(1.05);
+    background-color: rgba(37, 211, 102, 0.2);
+}
+
+.whatsapp-icon svg {
+    width: 24px;
+    height: 24px;
+}
