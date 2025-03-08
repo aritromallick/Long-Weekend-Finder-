@@ -30,18 +30,19 @@ if 'favorites' not in st.session_state:
 st.title("📅 Long Weekend Finder")
 st.markdown("""
 Find the perfect long weekend opportunities by planning your leaves strategically!
-Choose your country and year to get started.
 """)
 
-# Sidebar filters
-with st.sidebar:
-    st.header("Settings")
+# Main filters in the content area
+col1, col2 = st.columns(2)
+
+with col1:
     selected_country = st.selectbox(
         "Select Country",
         options=get_countries(),
         index=0  # Default to India
     )
 
+with col2:
     selected_year = st.selectbox(
         "Select Year",
         options=get_years(),
@@ -49,9 +50,9 @@ with st.sidebar:
     )
 
 # Main content
-col1, col2 = st.columns([2, 1])
+content_col1, content_col2 = st.columns([2, 1])
 
-with col1:
+with content_col1:
     st.subheader("Long Weekend Opportunities")
     potentials = get_long_weekend_potentials(selected_country, selected_year)
 
@@ -92,12 +93,13 @@ with col1:
             </div>
             """, unsafe_allow_html=True)
 
-with col2:
+with content_col2:
     st.subheader("Calendar View")
 
-    # Create calendar view
+    # Get current month as default
+    current_month = datetime.now().month
     month_names = list(calendar.month_name)[1:]
-    selected_month = st.selectbox("Select Month", month_names)
+    selected_month = st.selectbox("Select Month", month_names, index=current_month-1)
     month_num = month_names.index(selected_month) + 1
 
     # Get calendar and holidays for selected month
