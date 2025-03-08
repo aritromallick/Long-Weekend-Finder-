@@ -1,14 +1,15 @@
 from datetime import datetime, timedelta
 import json
 import calendar
+from holiday_api import holiday_api
 
-def load_holidays():
-    with open('holidays.json', 'r') as f:
-        return json.load(f)
+COUNTRY_CODE_MAP = {
+    'India': 'IN',
+    # Add more country mappings as needed
+}
 
 def get_countries():
-    holidays = load_holidays()
-    return list(holidays.keys())
+    return list(COUNTRY_CODE_MAP.keys())
 
 def get_years():
     return list(range(2024, 2031))  # Extended to 2030
@@ -17,11 +18,11 @@ def is_weekend(date):
     return date.weekday() >= 5
 
 def get_holidays_for_month(country, year, month):
-    holidays = load_holidays()
-    country_holidays = holidays[country][str(year)]
+    country_code = COUNTRY_CODE_MAP[country]
+    holidays = holiday_api.get_holidays(country_code, year)
 
     holiday_dates = set()
-    for holiday in country_holidays:
+    for holiday in holidays:
         holiday_date = datetime.strptime(holiday['date'], '%Y-%m-%d')
         if holiday_date.month == month:
             holiday_dates.add(holiday['date'])
@@ -29,12 +30,12 @@ def get_holidays_for_month(country, year, month):
     return holiday_dates
 
 def get_long_weekend_potentials(country, year):
-    holidays = load_holidays()
-    country_holidays = holidays[country][str(year)]
+    country_code = COUNTRY_CODE_MAP[country]
+    holidays = holiday_api.get_holidays(country_code, year)
 
     potentials = []
 
-    for holiday in country_holidays:
+    for holiday in holidays:
         holiday_date = datetime.strptime(holiday['date'], '%Y-%m-%d')
 
         # Check surrounding dates
