@@ -10,6 +10,7 @@ from utils import (
     create_whatsapp_share_text,
     get_holidays_for_month
 )
+from weather_api import weather_api
 
 # Page configuration
 st.set_page_config(
@@ -62,6 +63,9 @@ with content_col1:
             share_text = create_whatsapp_share_text(potential)
             whatsapp_link = f"https://wa.me/?text={urllib.parse.quote(share_text)}"
 
+            # Get weather forecast for the start date
+            weather = weather_api.get_forecast("Mumbai", potential['start_date'])  # Default to Mumbai for India
+
             # Check if this plan is in favorites
             plan_id = f"{potential['holiday']}_{potential['holiday_date']}"
             is_favorite = plan_id in st.session_state.favorites
@@ -83,6 +87,13 @@ with content_col1:
                 <div class="highlight-text">
                     Leaves needed: {', '.join(potential['leaves_needed']) if potential['leaves_needed'] else 'No leaves needed!'}
                 </div>
+                {f'''
+                <div class="weather-info">
+                    <img src="{weather['icon']}" alt="weather" style="width: 32px; height: 32px;"/>
+                    <span>{weather['condition']}</span>
+                    <span>{weather['max_temp']}°C / {weather['min_temp']}°C</span>
+                </div>
+                ''' if weather else ''}
                 <div style="margin-top: 10px;">
                     <a href="{whatsapp_link}" target="_blank" style="text-decoration: none;">
                         <svg class="whatsapp-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
