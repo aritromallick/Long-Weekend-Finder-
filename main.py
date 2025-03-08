@@ -8,7 +8,6 @@ from utils import (
     get_years,
     get_long_weekend_potentials,
     create_whatsapp_share_text,
-    get_year_statistics,
     get_holidays_for_month
 )
 
@@ -49,62 +48,14 @@ with st.sidebar:
         index=1  # Default to 2025
     )
 
-    # Additional filters
-    st.subheader("Filters")
-    min_days = st.slider("Minimum Days Off", 1, 7, 3)
-    max_leaves = st.slider("Maximum Leaves to Take", 0, 5, 2)
-
 # Main content
 col1, col2 = st.columns([2, 1])
 
 with col1:
-    # Statistics Dashboard
-    st.subheader("Year Overview")
-    stats = get_year_statistics(selected_country, selected_year)
-
-    stats_cols = st.columns(4)
-    with stats_cols[0]:
-        st.markdown("""
-        <div class="stat-card">
-            <div class="stat-value">{}</div>
-            <div class="stat-label">Total Holidays</div>
-        </div>
-        """.format(stats['total_holidays']), unsafe_allow_html=True)
-
-    with stats_cols[1]:
-        st.markdown("""
-        <div class="stat-card">
-            <div class="stat-value">{}</div>
-            <div class="stat-label">Long Weekends</div>
-        </div>
-        """.format(stats['long_weekends']), unsafe_allow_html=True)
-
-    with stats_cols[2]:
-        st.markdown("""
-        <div class="stat-card">
-            <div class="stat-value">{}</div>
-            <div class="stat-label">Total Leave Days</div>
-        </div>
-        """.format(stats['total_leaves']), unsafe_allow_html=True)
-
-    with stats_cols[3]:
-        st.markdown("""
-        <div class="stat-card">
-            <div class="stat-value">{}</div>
-            <div class="stat-label">Max Days Off</div>
-        </div>
-        """.format(stats['max_days_off']), unsafe_allow_html=True)
-
     st.subheader("Long Weekend Opportunities")
     potentials = get_long_weekend_potentials(selected_country, selected_year)
 
-    # Filter based on user preferences
-    filtered_potentials = [
-        p for p in potentials 
-        if p['total_days'] >= min_days and len(p['leaves_needed']) <= max_leaves
-    ]
-
-    for potential in filtered_potentials:
+    for potential in potentials:
         with st.container():
             # Create WhatsApp share link
             share_text = create_whatsapp_share_text(potential)

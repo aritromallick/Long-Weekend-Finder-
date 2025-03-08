@@ -28,21 +28,6 @@ def get_holidays_for_month(country, year, month):
 
     return holiday_dates
 
-def get_year_statistics(country, year):
-    holidays = load_holidays()
-    country_holidays = holidays[country][str(year)]
-    potentials = get_long_weekend_potentials(country, year)
-
-    total_leaves = sum(len(p['leaves_needed']) for p in potentials)
-    max_days_off = max((p['total_days'] for p in potentials), default=0)
-
-    return {
-        'total_holidays': len(country_holidays),
-        'long_weekends': len(potentials),
-        'total_leaves': total_leaves,
-        'max_days_off': max_days_off
-    }
-
 def get_long_weekend_potentials(country, year):
     holidays = load_holidays()
     country_holidays = holidays[country][str(year)]
